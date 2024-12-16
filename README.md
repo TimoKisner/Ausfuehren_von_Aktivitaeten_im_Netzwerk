@@ -16,7 +16,7 @@ In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Masc
 - Microsoft Azure (Virtuelle Maschinen, Virtuelles Netzwerk)
 - Remotedesktopverbindungen (/Microsoft Remote Desktop)
 - Powershell
-- Netzwerkprotokolle (SSH, RDP, DNS, HTTP/S, ICMP)
+- Netzwerkprotokolle (SSH, DHCP, DNS, RDP, ICMP)
 - Wireshark (Protokoll-Analysator)
 
 
