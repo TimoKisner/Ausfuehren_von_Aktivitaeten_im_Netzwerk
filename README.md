@@ -103,12 +103,67 @@ Setzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informatione
 <!-- NEW SECTION -->
 <h2>Konfigurieren von NSGs (Schritt 3)</h2>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Bevor wir an den Netzwerksicherheitsgruppen der Virtuellen Maschinen schrauben müssen wir innerhalb unserer Windows-Maschine Powershell öffnen. Und das als Adminstrator. Das ist powershell:knfcjiasbgvugdsfbu...............(). 
 </p>
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="1" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Als nächstes wollen wir von unserer Windows-Maschine aus unsere Linux(/Ubuntu)-Maschine anpingen. Bei dem anpingen wird das ICMP-Protokoll verwendet: dakjnsvjubdfuvbsufdjbv...........(). Aber bei dem ganzen Spam in Wireshark ist es unwahrscheinlich, dass wir die Pakete mit unseren Augen erwischen. Also filtern wir erst den Datenverkehr in Wireshark. Da wir auf ping filtern wollen geben wir in die Zeile "icmp" ein und drücken Enter (s.Bild).
+</p>
+<p>
+<img src="2" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Schon viel übersichtlicher! Jetzt pingen wir die Linux-Maschine an mittels Powershell. Gebe dazu "ping [private-IPv4_Addresse]" in Powershell ein. Die private-IPv4-Addresse deiner Linux-Maschine findest du, wenn du in Microsoft Azure zu den Virtuellen Maschinen navigierst und dann die Linux-Maschine anklickst (s. Bild). In meinem Fall habe ich die Maschine "LinuxVM" benannt und die IP-Addresse lautet 10.0.0.5.
+</p>
+<p>
+<img src="3" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<img src="4" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
+
+<p>
+Zurück in Wireshark sehen wir jetzt den Datenverkehr den wir mit unserem ping ausgelöst haben. Und wir sehen auch, dass es ein Erfolg war da wir einen Wechsel an Anfrage und Antwort sehen.
+</p>
+<p>
+<img src="5" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Mit unserem jetzigen Grundwissen können wir anfangen die Netzwerksicherheitsgruppen zu konfigurieren. NSGs:jabvuiasbdfugvgasdfughauroghag.......(). Zuerst initialisieren wir einen dauerhaften ping an die Linux-Maschine ausgehend von unserer Windows-Maschine. Gebe erneut "ping [IP-Addresse]" ein und hänge diesmal ein " -t" dran.
+</p>
+<p>
+<img src="6" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+In Microsoft Azure navigieren wir erneut zu unserer Linux-Maschine, unter "Netzwerk" auf "Netzwerkeinstellungen" und rechts auf den blauen Text neben "Netzwerksicherheitsgruppe". Links unter "Eingangssicherheitsregeln" wollen wir eine neue hinzufügen, die an die Maschine gesendete ICMP-Datenpakete blockt. Hierbei setzen wir die Zahl bei dem Kästchen "Priorität" auf 290. Es kann auch eine andere Zahl sein, hauptsache sie ist niedriger als 300. Der Name der Regel spielt keine Rolle.
+</p>
+<p>
+<img src="7" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<img src="8" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Beobachte jetzt in deiner Windows-Maschine den ping in Powershell und in Wireshark die Datenpakete. Anhand beider kannst du erkennen, das die Windows-Maschine immernoch versucht die Linux-Maschine anzupingen, sie aber keine Antwort ("reply") mehr von der Linux-Maschine bekommt: Die Linux-Maschine empfängt die Datenpakete. Aber da wir ping benutzen, werden die Pakete durch das ICMP-Protokoll geschleust, welches wir mit unserer selbst definierten Sicherheitsregel geblockt haben. Somit kommt es zu keiner Antwort mehr. 
+</p>
+<p>
+<img src="9" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Bevor wir zum nächsten Kapitel springen, löschen wir die Sicherheitsregel wieder und stellen sicher, dass in Wireshark und Powershell dei zwei Maschinen wieder normal mit einander kommunizieren, sprich dass die Linux-Maschine wieder antwortet. Anschließend stoppen wir den permanenten ping (Ctrl+C) und springen zum nächsten Kapitel.
+</p>
+<p>
+<img src="10" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
 
 
 
@@ -120,7 +175,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
@@ -134,7 +189,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
@@ -148,7 +203,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
@@ -162,7 +217,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
