@@ -1,1 +1,1 @@
-# Ausfuehren_von_Aktivitaeten_im_Netzwerk
+# Ausführen von Aktivitäten im Netzwerk
