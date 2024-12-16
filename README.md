@@ -3,7 +3,8 @@
 </p>
 
 <h1>Netzwerksicherheitsgruppen (NSGs) und Inspektion des Datenverkehrs zwischen virtuellen Azure-Maschinen</h1>
-In this tutorial, we observe various network traffic to and from Azure Virtual Machines with Wireshark as well as experiment with Network Security Groups. <br />
+In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Maschinen in Azure. Darüber hinaus experimentieren wir mit Netzwerksicherheitsgruppen und beobachten wie diese Einfluss auf unseren Netzwerkverkehr haben können.
+<br />
 
 
 
