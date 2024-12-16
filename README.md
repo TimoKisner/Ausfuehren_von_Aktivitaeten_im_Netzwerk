@@ -40,6 +40,9 @@ In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Masc
 - 2
 - 3
 - 4
+- 5
+- 6
+- 7
 
 
 
@@ -57,6 +60,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 </p>
 <br />
 
+
+
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
 <h2>Uga Buga (Schritt 2)</h2>
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -66,6 +74,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 </p>
 <br />
 
+
+
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
 <h2>Uga Buga (Schritt 3)</h2>
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -75,7 +88,54 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 </p>
 <br />
 
+
+
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
 <h2>Uga Buga (Schritt 4)</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</p>
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<br />
+
+
+
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<h2>Uga Buga (Schritt 5)</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</p>
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<br />
+
+
+
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<h2>Uga Buga (Schritt 6)</h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</p>
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<br />
+
+
+
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<h2>Uga Buga (Schritt 7)</h2>
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
