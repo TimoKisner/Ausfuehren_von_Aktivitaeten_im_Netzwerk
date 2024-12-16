@@ -26,8 +26,8 @@ In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Masc
 <!-- NEW SECTION -->
 <h2>Verwendete Betriebssysteme</h2>
 
-- Windows 10 (21H2)
-- Ubuntu Server 20.04
+- Windows 10 (22H2)
+- Ubuntu Pro 24.04
 
 
 
