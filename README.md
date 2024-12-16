@@ -10,7 +10,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>Environments and Technologies Used</h2>
+<h2>Verwendete Technologien und Umgebungen</h2>
 
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop
@@ -23,7 +23,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>Operating Systems Used </h2>
+<h2>Verwendete Betriebssysteme</h2>
 
 - Windows 10 (21H2)
 - Ubuntu Server 20.04
@@ -33,7 +33,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>High-Level Steps</h2>
+<h2>High-Level Übersicht der Schritte</h2>
 
 - Step 1
 - Step 2
@@ -45,7 +45,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>Actions and Observations</h2>
+<h2>Schritte und Beobachtungen</h2>
 
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
