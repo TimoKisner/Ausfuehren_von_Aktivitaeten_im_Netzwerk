@@ -16,7 +16,7 @@ In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Masc
 - Microsoft Azure (Virtuelle Maschinen, Virtuelles Netzwerk)
 - Remotedesktopverbindungen (/Microsoft Remote Desktop)
 - Powershell
-- Netzwerkprotokolle (SSH, DHCP, DNS, RDP, ICMP)
+- Netzwerkprotokolle (SSH, DNS, RDP, ICMP)
 - Wireshark (Protokoll-Analysator)
 
 
@@ -40,7 +40,6 @@ In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Masc
 - Einführung in Wireshark
 - Konfigurieren von NSGs
 - SSH-Protokoll
-- DHCP-Protokoll
 - DNS-Protokoll
 - RDP-Protokoll
 
@@ -172,10 +171,41 @@ Bevor wir zum nächsten Kapitel springen, löschen wir die Sicherheitsregel wied
 <!-- NEW SECTION -->
 <h2>SSH-Protokoll (Schritt 4)</h2>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Bevor wir mit SSH weitermachen, starten wir die Packet-Capture neu, heißt Wiresharks Einträge zu den Datenpaketen, die wir filtern, werden gelöscht und es fängt von 0 an neue Datenpakete abzufangen. Drücke oben links auf die grüne Haiflosse und klicke "Continue without Saving". Merken Sie sich diesen Schritt und wiederholen Sie in beim Beginn jedes neues Kapitels.
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/tFQZxNX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<img src="https://i.imgur.com/hcBgoPL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Die letzte Vorbereitung dieses Kapitels besteht darin in Wireshark auf SSH zu filtern bevor wir anfangen eine Verbindung aufzubauen. Was SSH überhaupt ist erläutere ich im Verlauf dieses Kapitels. Zum Filtern oben in die Leiste "ssh" eingeben.
+</p>
+<p>
+<img src="https://i.imgur.com/a0uOS5U.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Nun werden wir von unserer Windows-Maschine aus uns in die Linux-VM "SSH-en". Gebe folgendes in Powershell ein: "ssh [Benutzername]@[Private-IPv4-Addresse]". Mit Benutzername ist nicht der Name der Linux-VM gemeint, sondern der Name des Benutzerkontos, welches Sie beim Erstellen der Maschine zusammen mit einem Passwort ausgesucht haben. Es ist der Name, den Sie bei Remotedesktopverbindungen als Benutzer angegeben haben (entsprechend der Windows-VM Benutzername) um die Verbindung aufzubauen, über die wir die ganze Zeit operieren. Anschließend fragt Powershell, ob Sie sich sicher sind mit dem herstellen einer Verbindung. Sie tippen "yes" und anschließend geben Sie das Passwort des Benutzerkontos ihrer Linux-VM ein. Achtung!: Wundern Sie sich beim eingeben des Passwortes nicht, dass keine Zeichen in Powershell erscheinen. Powershell versteckt die Eingabe, aber registriert ihren Input. Wenn es gelungen ist, sehen Sie als Verzeichnis nicht mehr ihre Windows-VM sondern die Daten Ihrer Linux-VM.
+</p>
+<p>
+<img src="https://i.imgur.com/6kAsUE7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Tippen sie in Powershell ein was Sie wollen und beobachten Sie dabei den Datenverkehr in Wireshark. Was Sie tippen muss nicht Sinn ergeben, sprich es müssen keine Befehle sein oder sonstiges. Wie Sie sicherlich feststellen passiert, wenn sie nichts tippen, gar nichts. Sobald Sie anfangen in die Tastatur zu hämmern erscheint ein Spam in Wireshark. Das liegt an der Natur von SSH. SSH ist:jdbajhsbdvhjab fsdhivb afjhv....................(). Wireshark sehen Sie unsere Virtuellen Maschinen als jeweils Quelle und Ziel des Datenverkehrs und sehen, dass das Protokoll "SSHv2" verwendet wird.
+</p>
+<p>
+<img src="https://i.imgur.com/1XCXYWG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Zum Schluss trennen wir wieder die Verbindung. Gebe "exit" in Powershell ein und schon ist es erledigt! Nun befinden Sie sich wieder innerhalb Ihrer Windows-VM.
+</p>
+<p>
+<img src="https://i.imgur.com/1BSWF4Y.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
@@ -184,26 +214,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>DHCP-Protokoll (Schritt 5)</h2>
+<h2>DNS-Protokoll (Schritt 5)</h2>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Anfangen beim "Domain Name System"(DNS) tun wir mit einem Neustart der Packet-Capture in Wireshark und das entsprechende filtern auf DNS. Das selbe Spiel wie davor, einfach "dns" in die Zeile oben eingeben.
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/0QMgxUI.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-<br />
 
-
-
-<!-- NEW SECTION -->
-<!-- NEW SECTION -->
-<!-- NEW SECTION -->
-<h2>DNS-Protokoll (Schritt 6)</h2>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+DNS ist: dasfuijabsgjuhvbafsdjg....................(). Als Sie auf "dns" gefiltert haben, haben Sie höchstwahrscheinlich gesehen, dass Wireshark bereits Datnepakete auf dieser Route identifiziert hat. Um also DNS-Datenverkehr zu verursachen lassen wir uns in Powershell Namen von Webseiten, wie google.com oder netflix.com, in IP-Addressen übersetzen. Gebe "nslookup [webseite]" in Powershell ein. Als Beispiel gebe ich "nslookup google.com" ein. !Wichtig: Merke dir am besten vom letzten angezeigten Eintrag in Wireshark die Nummer links, damit du weißt ab welchem Datenpaket die nachfolgenden durch unseren Befehl ausgelöst wurden. Alternativ können wir auch einfach den Browser öffnen und anfangen zu googlen.
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/mXtqql9.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
@@ -212,12 +235,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>RDP-Protokoll (Schritt 7)</h2>
+<h2>RDP-Protokoll (Schritt 6)</h2>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+zu guter letzt sprechen wi über "Remote Desktop Protocol", kurz RDP. Wie der Name verrät geht es hierbei um:nda sjkvbajshbvasbfvujd...................(). Tatsächlich, wie Sie eventuell bereits vermuten, nutzen wir schon die ganze Zeit. Nämlich die Verbindung zwischen unserem eigenen,physischen Rechner und der Windows-VM. Daher beinhaltet alles was wir in diesem Kapitel tun müssen nur das filtern nach RDP. !Achtung: Diesmal müssen wir den entsprechenden Port und nicht das Protokoll "rdp" eingeben. Das hat folgenden Grund: Wireshark muss das Protokoll erkennen, um es als "RDP" anzuzeigen. Wenn der Datenverkehr jedoch verschlüsselt ist (was bei modernen RDP-Verbindungen standardmäßig der Fall ist), kann Wireshark nicht in die Pakete hineinschauen, um sie als RDP zu identifizieren. Demnach geben wir in Wireshark "tcp.port == 3389" oben in die Zeile ein. Alle (fast alle) Protokolle wie SSH oder DNS oder auch RDP haben einen eigenen Port, eine Zahl wie 22 für SSH oder 3389 für RDP. Stellen Sie es sich wie folgt vor: Das Protokoll gibt die Handhabung über das Paket an, wenn es am Ziel angekommen ist. Dinge wie Formatierung der Daten, das Interpretieren der Daten, und vieles mehr. Der Port bezeichnet hierbei die Hausnummer an die das Paket zugestellt ist. Sprich an welche Anwendung und Zweck dieses Datenpaket geht. Das letzte Puzzlestück, das "tcp" ist unspezifisch zu unserem Kontext. Kurz, es bezieht sich auf die Weise, wie die Datenpakete versendet werden. Für unsere Intentionen irrelevant.
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Kh5rgfb.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Im Unterschied zu den anderen Protokollen, die wir uns angeguckt haben, hört es mit den Datenpaketen in Wireshark gar nicht auf. Ob wir eine Aktion ausführen, wie etwas schreiben, sei es in Powershell oder in Wireshark, oder nichts tun, Datenpakete werden immernoch versendet. Bei SSH haben wir ebenfalls Kontrolle über einen anderen Rechner genommen, aber nicht dauerhaften Austausch von Datenpaketen beobachtet. Warum ist das der Fall? Was ist der Unterschied? ykjnhgvjudsafbuj...............().
 </p>
 <br />
 
