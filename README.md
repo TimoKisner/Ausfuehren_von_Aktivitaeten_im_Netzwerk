@@ -55,7 +55,7 @@ In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Masc
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>Einrichten der Umgebung (Schritt 1)</h2>
+<h2>Einrichten der Umgebung</h2>
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
@@ -69,7 +69,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>Einführung in Wireshark (Schritt 2)</h2>
+<h2>Einführung in Wireshark</h2>
 <p>
 Zuerst verbinden wir uns mit der Virtuellen Windows-Maschine mithilfe von Remotedesktopverbindungen ( oder Microsoft Remote Desktop falls Ihr PC ein MacOS verwendet). Anschließend gehen wir ins Internet und installieren Wireshark[hier hyperlink:https://www.wireshark.org/#downloadLink], genauer den Windows x64 Installer. Öffnen Sie diesen nach erfolgreichen Download und starten Sie mit der Installation von Wireshark. Klicken Sie sich hierbei einfach durch und achten Sie bei dem Fenster "Packet Capture" darauf dass das Häckchen für "Install Npcap [Version]" gesetzt ist (s. Bild). Weil djnvajbfjhgvsdfjbnvsdf.......().
 </p>
@@ -100,7 +100,7 @@ Setzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informatione
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>Konfigurieren von NSGs (Schritt 3)</h2>
+<h2>Konfigurieren von NSGs</h2>
 <p>
 Bevor wir an den Netzwerksicherheitsgruppen der Virtuellen Maschinen schrauben müssen wir innerhalb unserer Windows-Maschine Powershell öffnen. Und das als Adminstrator. Das ist powershell:knfcjiasbgvugdsfbu...............(). 
 </p>
@@ -169,7 +169,7 @@ Bevor wir zum nächsten Kapitel springen, löschen wir die Sicherheitsregel wied
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>SSH-Protokoll (Schritt 4)</h2>
+<h2>SSH-Protokoll</h2>
 <p>
 Bevor wir mit SSH weitermachen, starten wir die Packet-Capture neu, heißt Wiresharks Einträge zu den Datenpaketen, die wir filtern, werden gelöscht und es fängt von 0 an neue Datenpakete abzufangen. Drücke oben links auf die grüne Haiflosse und klicke "Continue without Saving". Merken Sie sich diesen Schritt und wiederholen Sie in beim Beginn jedes neues Kapitels.
 </p>
@@ -214,7 +214,7 @@ Zum Schluss trennen wir wieder die Verbindung. Gebe "exit" in Powershell ein und
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>DNS-Protokoll (Schritt 5)</h2>
+<h2>DNS-Protokoll</h2>
 <p>
 Anfangen beim "Domain Name System"(DNS) tun wir mit einem Neustart der Packet-Capture in Wireshark und das entsprechende filtern auf DNS. Das selbe Spiel wie davor, einfach "dns" in die Zeile oben eingeben.
 </p>
@@ -235,7 +235,7 @@ DNS ist: dasfuijabsgjuhvbafsdjg....................(). Als Sie auf "dns" gefilte
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
 <!-- NEW SECTION -->
-<h2>RDP-Protokoll (Schritt 6)</h2>
+<h2>RDP-Protokoll</h2>
 <p>
 zu guter letzt sprechen wi über "Remote Desktop Protocol", kurz RDP. Wie der Name verrät geht es hierbei um:nda sjkvbajshbvasbfvujd...................(). Tatsächlich, wie Sie eventuell bereits vermuten, nutzen wir schon die ganze Zeit. Nämlich die Verbindung zwischen unserem eigenen,physischen Rechner und der Windows-VM. Daher beinhaltet alles was wir in diesem Kapitel tun müssen nur das filtern nach RDP. !Achtung: Diesmal müssen wir den entsprechenden Port und nicht das Protokoll "rdp" eingeben. Das hat folgenden Grund: Wireshark muss das Protokoll erkennen, um es als "RDP" anzuzeigen. Wenn der Datenverkehr jedoch verschlüsselt ist (was bei modernen RDP-Verbindungen standardmäßig der Fall ist), kann Wireshark nicht in die Pakete hineinschauen, um sie als RDP zu identifizieren. Demnach geben wir in Wireshark "tcp.port == 3389" oben in die Zeile ein. Alle (fast alle) Protokolle wie SSH oder DNS oder auch RDP haben einen eigenen Port, eine Zahl wie 22 für SSH oder 3389 für RDP. Stellen Sie es sich wie folgt vor: Das Protokoll gibt die Handhabung über das Paket an, wenn es am Ziel angekommen ist. Dinge wie Formatierung der Daten, das Interpretieren der Daten, und vieles mehr. Der Port bezeichnet hierbei die Hausnummer an die das Paket zugestellt ist. Sprich an welche Anwendung und Zweck dieses Datenpaket geht. Das letzte Puzzlestück, das "tcp" ist unspezifisch zu unserem Kontext. Kurz, es bezieht sich auf die Weise, wie die Datenpakete versendet werden. Für unsere Intentionen irrelevant.
 </p>
