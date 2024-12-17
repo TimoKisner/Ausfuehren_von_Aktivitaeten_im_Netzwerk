@@ -2,8 +2,8 @@
 <img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
 </p>
 
-<h1>Netzwerksicherheitsgruppen (NSGs) und Inspektion des Datenverkehrs zwischen virtuellen Azure-Maschinen</h1>
-In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Maschinen in Azure. Darüber hinaus experimentieren wir mit Netzwerksicherheitsgruppen und beobachten wie diese Einfluss auf unseren Netzwerkverkehr haben können.
+<h1>Netzwerksicherheitsgruppen (NSGs) und Inspektion von Netzwerkprotokollen</h1>
+In diesem Tutorial beobachten wir den Datenverkehr von und zu Virtuellen Maschinen in Azure und die verschiedenen Protokolle, die im Netzwerk zu finden sind. Darüber hinaus experimentieren wir mit Netzwerksicherheitsgruppen und beobachten, wie diese Einfluss auf unseren Datenverkehr im Netzwerk haben können.
 <br />
 
 
