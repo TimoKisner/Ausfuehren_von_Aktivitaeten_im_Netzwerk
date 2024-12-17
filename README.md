@@ -57,10 +57,34 @@ In diesem Tutorial beobachten wir den Netzwerkverkehr von und zu Virtuellen Masc
 <!-- NEW SECTION -->
 <h2>Einrichten der Umgebung</h2>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Für unser heutiges Vorhaben benötigen wir zwei Virtuelle Maschinen innerhalb des selben Netzwerks. Ich verwende hierfür Microsoft Azure und ihre Cloud-Services. Zuerst erstellen wir eine Ressourcengruppe, die unsere virtuellen Maschinen und das virtuelle Netzwerk haust. Meine lautet "RGroup". Neben dem Namen wählen wir eine Region die uns nahe liegt und erstellen die Ressourcengruppe. Der Nächste Schritt beinhaltet das Erstellen des Virtuellen Netzwerks. Dabei wichtig, diese der von uns soeben erstellten Ressourcengruppe zuzuordnen und die selbe Region auszuwählen. Mein Netzwerk heißt "TestVnet". 
 </p>
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/PjWBZgw.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Nun zu den Virtuellen Maschinen. Wir benötigen eine VM (=Virtuelle Maschine) mit einem Windows Betriebssystem und eine mit einem Linux Betriebssystem. Beim Erstellen gilt für beide: die Ressourcengruppe, die wir erstellt haben auszuwählen sowie das virtuelle Netzwerk; die selbe Region wie diese; eine Größe des Rechners von mindestens 2vcpus (=virtuelle CPUs).
+</p>
+<br />
+<p>
+Spezifisch für die Windows-Maschine gilt es das Häckchen ganz unten auf der Seite "Grundeinstellungen" zu setzen und Windows 10 Pro 22H2 für das Image auszuwählen. !Wichtig: Den Benutzernamen und das Passwort welches Sie eingegeben haben benötigen wir später für das Verbinden zur Maschine. Mein Admin-Konto für meine Windows-Maschine "windowsVM" lautet "TestWindows".
+</p>
+<p>
+<img src="https://i.imgur.com/hocX2Hg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<img src="https://i.imgur.com/s0WJL7B.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<p>
+Spezifisch für die Linux gilt Ubuntu Server 22.04 als Image auszuwählen und den Authentifizierungstyp unter Adminstratorkonto auf "Kennwort" zu setzen (s. Bild). Mein Admin-Konto für meine Linux-Maschine "linuxVM" lautet "TestLinux".
+</p>
+<p>
+<img src="https://i.imgur.com/m7Umzhh.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+<img src="https://i.imgur.com/O7erHsh.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <br />
 
