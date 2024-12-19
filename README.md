@@ -95,7 +95,7 @@ Spezifisch für die Linux gilt Ubuntu Server 22.04 als Image auszuwählen und de
 <!-- NEW SECTION -->
 <h2>Einführung in Wireshark</h2>
 <p>
-Zuerst verbinden wir uns mit der Virtuellen Windows-Maschine mithilfe von Remotedesktopverbindungen ( oder Microsoft Remote Desktop falls Ihr PC ein MacOS verwendet). Anschließend gehen wir ins Internet und installieren Wireshark[hier hyperlink:https://www.wireshark.org/#downloadLink], genauer den Windows x64 Installer. Öffnen Sie diesen nach erfolgreichen Download und starten Sie mit der Installation von Wireshark. Klicken Sie sich hierbei einfach durch und achten Sie bei dem Fenster "Packet Capture" darauf dass das Häckchen für "Install Npcap [Version]" gesetzt ist (s. Bild). Weil djnvajbfjhgvsdfjbnvsdf.......().
+Zuerst verbinden wir uns mit der Virtuellen Windows-Maschine mithilfe von Remotedesktopverbindungen ( oder Microsoft Remote Desktop falls Ihr PC ein MacOS verwendet). Anschließend gehen wir ins Internet und installieren Wireshark[hier hyperlink:https://www.wireshark.org/#downloadLink], genauer den Windows x64 Installer. Öffnen Sie diesen nach erfolgreichem Download und starten Sie mit der Installation von Wireshark. Klicken Sie sich hierbei einfach durch und achten Sie bei dem Fenster "Packet Capture" darauf dass das Häckchen für "Install Npcap [Version]" gesetzt ist (s. Bild). Npcap ist ein essenzielles Netzwerk-Capture-Tool, welches Wireshark die Möglichkeit gibt, Datenpakete direkt von der Netzwerkschnittstelle aus zu erfassen. Ohne Npcap könnte Wireshark keine Netzwerkaktivitäten aufzeichnen, da es als Schnittstelle zwischen der Software und der Netzwerkkarte dient. Daher ist die Installation von Npcap entscheidend, um mit Wireshark effektiv Netzwerkverkehr analysieren zu können.
 </p>
 <p>
 <img src="https://i.imgur.com/Y7XZwIT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -106,14 +106,14 @@ Zuerst verbinden wir uns mit der Virtuellen Windows-Maschine mithilfe von Remote
 <br />
 
 <p>
-Nach der Installation öffnen wir Wireshark und starten eine Packet-Capture, anders ausgedrückt fangen wir an, Datenpakete, die an und von unserer Virtuellen Windows Maschine gesendet werden, abzufangen. Den das ist Wireshark: judahbfuivsdazugvusidvgsdfgvsdfgfd...................(). Folge zum Starten einer Packet-Capture dem kommenden Bild.
+Nach der Installation öffnen wir Wireshark und starten eine Packet-Capture, anders ausgedrückt fangen wir an, Datenpakete, die an und von unserer Virtuellen Windows Maschine gesendet werden, abzufangen. Aber was ist Wireshark überhaupt? Wireshark ist ein Open-Source-Analysetool, das Netzwerkverkehr in Echtzeit erfasst und detailliert darstellt, um Netzwerke zu überwachen und Probleme zu diagnostizieren. Es ermöglicht Benutzern, Datenpakete zu untersuchen und Protokolle wie SSH, DHCP oder DNS zu analysieren. Folge zum Starten einer Packet-Capture dem kommenden Bild.
 </p>
 <p>
 <img src="https://i.imgur.com/rnUZQEP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Setzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informationen über diese. Wie den Ursprung und das Ziel des Datenpakets oder auch Informationen über die verschiedenen Protokolle und Ports, bis hin zum physischen Medium, welches das Datenpaket auf seiner Reise durchläuft. Jegliche Kommunikation zwischen zwei Geräten über ein Netzwerk, sei es innerhalb des lokalen Netzwerks oder des Internets, lässt sich mithilfe des OSI-Modells erklären. Auch die links unten stehenden Informationen orientieren sich an diesem Modell, jedoch würde das erklären dieses Modell den Rahmen dieser Anleitung sprengen. Wir konzentrieren uns in dieser Anleitung lediglich auf die Quelle und das Ziel der Pakete.
+Setzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informationen über diese. Wie den Ursprung und das Ziel des Datenpakets oder auch Informationen über die verschiedenen Protokolle und Ports, bis hin zum physischen Medium, welches das Datenpaket auf seiner Reise durchläuft. Jegliche Kommunikation zwischen zwei Geräten über ein Netzwerk, sei es innerhalb des lokalen Netzwerks oder des Internets, lässt sich mithilfe des OSI-Modells erklären. Das OSI-Modell ist ein konzeptionelles Referenzmodell, das die Kommunikation in Netzwerken in sieben Schichten unterteilt, um die Übertragung von Daten systematisch zu beschreiben und zu standardisieren. Auch die links unten stehenden Informationen orientieren sich an diesem Modell, jedoch würde eine detailierte Erläuterung dieses Modells den Rahmen der Anleitung sprengen. Wir konzentrieren uns in dieser Anleitung lediglich auf die Eckdaten, wie Quelle des Datenpakets, das Ziel, etc.
 </p>
 <p>
 <img src="https://i.imgur.com/eTFQfWX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -126,14 +126,14 @@ Setzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informatione
 <!-- NEW SECTION -->
 <h2>Konfigurieren von NSGs</h2>
 <p>
-Bevor wir an den Netzwerksicherheitsgruppen der Virtuellen Maschinen schrauben müssen wir innerhalb unserer Windows-Maschine Powershell öffnen. Und das als Adminstrator. Das ist powershell:knfcjiasbgvugdsfbu...............(). 
+Bevor wir an den Netzwerksicherheitsgruppen der Virtuellen Maschinen schrauben müssen wir innerhalb unserer Windows-Maschine "Windows Powershell" öffnen. Und das als Adminstrator. PowerShell ist eine Befehlszeile und Skriptumgebung von Microsoft, die zur Verwaltung von Systemen und Netzwerken dient. Es wird verwendet, um Befehle auszuführen und Prozesse zu automatisieren. Einfach gesagt, PowerShell funktioniert, indem es Benutzerbefehle annimmt und diese direkt auf einem System ausführt.
 </p>
 <p>
 <img src="https://i.imgur.com/1zmIHeW.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Als nächstes wollen wir von unserer Windows-Maschine aus unsere Linux(/Ubuntu)-Maschine anpingen. Bei dem anpingen wird das ICMP-Protokoll verwendet: dakjnsvjubdfuvbsufdjbv...........(). Aber bei dem ganzen Spam in Wireshark ist es unwahrscheinlich, dass wir die Pakete mit unseren Augen erwischen. Also filtern wir erst den Datenverkehr in Wireshark. Da wir auf ping filtern wollen geben wir in die Zeile "icmp" ein und drücken Enter (s.Bild).
+Als nächstes wollen wir von unserer Windows-Maschine aus unsere Linux(/Ubuntu)-Maschine anpingen. Bei dem anpingen wird das ICMP-Protokoll verwendet. Was ist ICMP und was genau beudeutet "anpingen"? Ping ist ein Netzwerk-Tool, das mithilfe des Protokolls ICMP (Internet Control Message Protocol) überprüft, ob ein bestimmtes Ziel im Netzwerk erreichbar ist. Darüber hinaus misst es sogar die Antwortzeit. ICMP ist ein Netzwerkprotokoll, das für den Austausch von Fehler- und Statusmeldungen zwischen Geräten im Netzwerk verwendet wird, wie z. B. zur Meldung, ob ein Paket sein Ziel erreicht hat oder nicht. Aber bei dem ganzen Spam in Wireshark ist es unwahrscheinlich, dass wir die Pakete mit unseren Augen erwischen. Also filtern wir erst den Datenverkehr in Wireshark. Da wir auf ping filtern wollen geben wir in die Zeile "icmp" ein und drücken Enter (s.Bild).
 </p>
 <p>
 <img src="https://i.imgur.com/FGoj14r.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -158,7 +158,7 @@ Zurück in Wireshark sehen wir jetzt den Datenverkehr den wir mit unserem ping a
 </p>
 
 <p>
-Mit unserem jetzigen Grundwissen können wir anfangen die Netzwerksicherheitsgruppen zu konfigurieren. NSGs:jabvuiasbdfugvgasdfughauroghag.......(). Zuerst initialisieren wir einen dauerhaften ping an die Linux-Maschine ausgehend von unserer Windows-Maschine. Gebe erneut "ping [IP-Addresse]" ein und hänge diesmal ein " -t" dran.
+Mit unserem jetzigen Grundwissen können wir anfangen die Netzwerksicherheitsgruppen zu konfigurieren. Netzwerksicherheitsgruppen (NSGs) sind virtuelle Firewallregeln in Azure, die den eingehenden und ausgehenden Datenverkehr für virtuelle Maschinen und andere Netzwerkressourcen steuern. Sie ermöglichen es, den Datenverkehr basierend auf Parametern wie IP-Adressen, Ports und Protokollen gezielt zuzulassen oder zu blockieren. Wichtig zu wissen, ist dass es sich bei NSGs um eine spezifische Funktion von Microsoft Azure ist. Das Konzept dahinter ist bei allen Cloud-Umgebungen zu finden, bloß mit verschiedenen Bezeichnungen. Zuerst initialisieren wir einen dauerhaften ping an die Linux-Maschine ausgehend von unserer Windows-Maschine. Gebe erneut "ping [IP-Addresse]" ein und hänge diesmal ein " -t" dran.
 </p>
 <p>
 <img src="https://i.imgur.com/LLPv3cr.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -219,7 +219,7 @@ Nun werden wir von unserer Windows-Maschine aus uns in die Linux-VM "SSH-en". Ge
 </p>
 
 <p>
-Tippen sie in Powershell ein was Sie wollen und beobachten Sie dabei den Datenverkehr in Wireshark. Was Sie tippen muss nicht Sinn ergeben, sprich es müssen keine Befehle sein oder sonstiges. Wie Sie sicherlich feststellen passiert, wenn sie nichts tippen, gar nichts. Sobald Sie anfangen in die Tastatur zu hämmern erscheint ein Spam in Wireshark. Das liegt an der Natur von SSH. SSH ist:jdbajhsbdvhjab fsdhivb afjhv....................(). Wireshark sehen Sie unsere Virtuellen Maschinen als jeweils Quelle und Ziel des Datenverkehrs und sehen, dass das Protokoll "SSHv2" verwendet wird.
+Tippen sie in Powershell ein was Sie wollen und beobachten Sie dabei den Datenverkehr in Wireshark. Was Sie tippen muss nicht Sinn ergeben, sprich es müssen keine Befehle sein oder sonstiges. Wie Sie sicherlich feststellen passiert, wenn sie nichts tippen, in Wireshark ebenfalls gar nichts. Sobald Sie anfangen in die Tastatur zu hämmern erscheint ein Spam in Wireshark. Das liegt an der Natur von SSH. Das SSH-Protokoll (Secure Shell) ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen zwei Geräten herstellt, um Daten sicher zu übertragen und Fernzugriff auf Systeme zu ermöglichen. Es ist vollkommen Text-basiert und nutzt dementsprechend Powershell als Interface (Command Line Interface/CLI). Der "Spam" in Wireshark entsteht, weil bei jeder Tasteneingabe über die SSH-Verbindung Datenpakete zwischen dem Client und dem Server ausgetauscht werden, um die Eingaben sicher zu übertragen. Die Rechner unterscheiden nicht zwischen sinnvollen Befehlen oder Buchstabensalat, da sie nicht wissen was noch alles an Buchstaben kommen oder sogar entfernt werden. Dementsprechend sehen wir Datenverkehr sobald wir irgendwas eingeben. In Wireshark sehen Sie unsere Virtuellen Maschinen als jeweils Quelle und Ziel des Datenverkehrs und sehen, dass genauer das Protokoll "SSHv2" verwendet wird.
 </p>
 <p>
 <img src="https://i.imgur.com/1XCXYWG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -247,7 +247,7 @@ Anfangen beim "Domain Name System"(DNS) tun wir mit einem Neustart der Packet-Ca
 </p>
 
 <p>
-DNS ist: dasfuijabsgjuhvbafsdjg....................(). Als Sie auf "dns" gefiltert haben, haben Sie höchstwahrscheinlich gesehen, dass Wireshark bereits Datnepakete auf dieser Route identifiziert hat. Um also DNS-Datenverkehr zu verursachen lassen wir uns in Powershell Namen von Webseiten, wie google.com oder netflix.com, in IP-Addressen übersetzen. Gebe "nslookup [webseite]" in Powershell ein. Als Beispiel gebe ich "nslookup google.com" ein. !Wichtig: Merke dir am besten vom letzten angezeigten Eintrag in Wireshark die Nummer links, damit du weißt ab welchem Datenpaket die nachfolgenden durch unseren Befehl ausgelöst wurden. Alternativ können wir auch einfach den Browser öffnen und anfangen zu googlen.
+Das Domain Name System (DNS) ist ein Netzwerkdienst, der Domainnamen wie „example.com“ in IP-Adressen umwandelt, damit Computer (besser gesagt der Benutzer hinter dem Bildschirm) und Server (Webserver) miteinander kommunizieren können. Dies wird durch ein verteiltes System von DNS-Servern ermöglicht, die Anfragen weiterleiten und die zugehörigen IP-Adressen bereitstellen. Als Sie auf "dns" gefiltert haben, haben Sie höchstwahrscheinlich gesehen, dass Wireshark bereits Datenpakete auf der DNS-Straße identifiziert hat. Um also DNS-Datenverkehr zu verursachen lassen wir uns in Powershell Namen von Webseiten, wie google.com oder netflix.com, in IP-Addressen übersetzen. Gebe "nslookup [webseite]" in Powershell ein. Als Beispiel gebe ich "nslookup google.com" ein. !Wichtig: Merke dir am besten vom letzten angezeigten Eintrag in Wireshark die Nummer links, damit du weißt ab welchem Datenpaket die nachfolgenden durch unseren Befehl ausgelöst wurden. Alternativ können wir auch einfach den Browser öffnen und anfangen zu googlen.
 </p>
 <p>
 <img src="https://i.imgur.com/mXtqql9.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
