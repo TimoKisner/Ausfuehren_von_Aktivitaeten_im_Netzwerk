@@ -195,7 +195,7 @@ Bevor wir zum nächsten Kapitel springen, löschen wir die Sicherheitsregel wied
 <!-- NEW SECTION -->
 <h2>SSH-Protokoll</h2>
 <p>
-Bevor wir mit SSH weitermachen, starten wir die Packet-Capture neu, heißt Wiresharks Einträge zu den Datenpaketen, die wir filtern, werden gelöscht und es fängt von 0 an neue Datenpakete abzufangen. Drücke oben links auf die grüne Haiflosse und klicke "Continue without Saving". Merken Sie sich diesen Schritt und wiederholen Sie in beim Beginn jedes neues Kapitels.
+Bevor wir mit SSH weitermachen, starten wir die Packet-Capture neu, heißt Wiresharks Einträge zu den Datenpaketen, die wir filtern, werden gelöscht und es fängt von 0 an neue Datenpakete abzufangen. Drücke oben links auf die grüne Haiflosse und klicke "Continue without Saving". Merken Sie sich diesen Schritt und wiederholen Sie ihn beim Beginn jedes neuen Kapitels.
 </p>
 <p>
 <img src="https://i.imgur.com/tFQZxNX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -205,28 +205,28 @@ Bevor wir mit SSH weitermachen, starten wir die Packet-Capture neu, heißt Wires
 </p>
 
 <p>
-Die letzte Vorbereitung dieses Kapitels besteht darin in Wireshark auf SSH zu filtern bevor wir anfangen eine Verbindung aufzubauen. Was SSH überhaupt ist erläutere ich im Verlauf dieses Kapitels. Zum Filtern oben in die Leiste "ssh" eingeben.
+Die letzte Vorbereitung dieses Kapitels besteht darin in Wireshark auf SSH zu filtern bevor wir anfangen eine Verbindung aufzubauen. Was SSH überhaupt ist, erläutere ich im Verlauf dieses Kapitels. Zum Filtern oben in die Leiste "ssh" eingeben.
 </p>
 <p>
 <img src="https://i.imgur.com/a0uOS5U.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Nun werden wir von unserer Windows-Maschine aus uns in die Linux-VM "SSH-en". Gebe folgendes in Powershell ein: "ssh [Benutzername]@[Private-IPv4-Addresse]". Mit Benutzername ist nicht der Name der Linux-VM gemeint, sondern der Name des Benutzerkontos, welches Sie beim Erstellen der Maschine zusammen mit einem Passwort ausgesucht haben. Es ist der Name, den Sie bei Remotedesktopverbindungen als Benutzer angegeben haben (entsprechend der Windows-VM Benutzername) um die Verbindung aufzubauen, über die wir die ganze Zeit operieren. Anschließend fragt Powershell, ob Sie sich sicher sind mit dem herstellen einer Verbindung. Sie tippen "yes" und anschließend geben Sie das Passwort des Benutzerkontos ihrer Linux-VM ein. Achtung!: Wundern Sie sich beim eingeben des Passwortes nicht, dass keine Zeichen in Powershell erscheinen. Powershell versteckt die Eingabe, aber registriert ihren Input. Wenn es gelungen ist, sehen Sie als Verzeichnis nicht mehr ihre Windows-VM sondern die Daten Ihrer Linux-VM.
+Nun werden wir von unserer Windows-Maschine aus uns in die Linux-VM "SSH-en". Gebe folgendes in PowerShell ein: "ssh [Benutzername]@[Private-IPv4-Adresse]". Mit Benutzername ist nicht der Name der Linux-VM gemeint, sondern der Name des Benutzerkontos, welches Sie beim Erstellen der Maschine zusammen mit einem Passwort ausgesucht haben. Es ist der Name, den Sie bei Remotedesktopverbindungen als Benutzer angegeben haben (entsprechend der Windows-VM Benutzername) um die Verbindung aufzubauen, über die wir die ganze Zeit operieren. Anschließend fragt PowerShell, ob Sie sich sicher sind mit dem Herstellen einer Verbindung. Sie tippen "yes" und anschließend geben Sie das Passwort des Benutzerkontos ihrer Linux-VM ein. Achtung!: Wundern Sie sich beim Eingeben des Passwortes nicht, dass keine Zeichen in PowerShell erscheinen. PowerShell versteckt die Eingabe, aber registriert ihren Input. Wenn es gelungen ist, sehen Sie als Verzeichnis nicht mehr ihre Windows-VM, sondern die Daten Ihrer Linux-VM.
 </p>
 <p>
 <img src="https://i.imgur.com/6kAsUE7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Tippen sie in Powershell ein was Sie wollen und beobachten Sie dabei den Datenverkehr in Wireshark. Was Sie tippen muss nicht Sinn ergeben, sprich es müssen keine Befehle sein oder sonstiges. Wie Sie sicherlich feststellen passiert, wenn sie nichts tippen, in Wireshark ebenfalls gar nichts. Sobald Sie anfangen in die Tastatur zu hämmern erscheint ein Spam in Wireshark. Das liegt an der Natur von SSH. Das SSH-Protokoll (Secure Shell) ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen zwei Geräten herstellt, um Daten sicher zu übertragen und Fernzugriff auf Systeme zu ermöglichen. Es ist vollkommen Text-basiert und nutzt dementsprechend Powershell als Interface (Command Line Interface/CLI). Der "Spam" in Wireshark entsteht, weil bei jeder Tasteneingabe über die SSH-Verbindung Datenpakete zwischen dem Client und dem Server ausgetauscht werden, um die Eingaben sicher zu übertragen. Die Rechner unterscheiden nicht zwischen sinnvollen Befehlen oder Buchstabensalat, da sie nicht wissen was noch alles an Buchstaben kommen oder sogar entfernt werden. Dementsprechend sehen wir Datenverkehr sobald wir irgendwas eingeben. In Wireshark sehen Sie unsere Virtuellen Maschinen als jeweils Quelle und Ziel des Datenverkehrs und sehen, dass genauer das Protokoll "SSHv2" verwendet wird.
+Tippen Sie in PowerShell ein was Sie wollen und beobachten Sie dabei den Datenverkehr in Wireshark. Was Sie tippen muss nicht Sinn ergeben, sprich es müssen keine Befehle sein oder sonstiges. Wie Sie sicherlich feststellen passiert, wenn sie nichts tippen, in Wireshark ebenfalls gar nichts. Sobald Sie anfangen in die Tastatur zu hämmern erscheint ein Spam in Wireshark. Das liegt an der Natur von SSH. Das SSH-Protokoll (Secure Shell) ist ein Netzwerkprotokoll, das eine verschlüsselte Verbindung zwischen zwei Geräten herstellt, um Daten sicher zu übertragen und Fernzugriff auf Systeme zu ermöglichen. Es ist vollkommen Text-basiert und nutzt dementsprechend PowerShell als Interface (Command Line Interface/CLI). Der "Spam" in Wireshark entsteht, weil bei jeder Tasteneingabe über die SSH-Verbindung Datenpakete zwischen dem Client und dem Server ausgetauscht werden, um die Eingaben sicher zu übertragen. Die Rechner unterscheiden nicht zwischen sinnvollen Befehlen oder Buchstabensalat, da sie nicht wissen was noch alles an Buchstaben kommen oder sogar entfernt werden. Dementsprechend sehen wir Datenverkehr, sobald wir irgendwas eingeben. In Wireshark sehen Sie unsere virtuellen Maschinen als jeweils Quelle und Ziel des Datenverkehrs und sehen, dass genauer das Protokoll "SSHv2" verwendet wird.
 </p>
 <p>
 <img src="https://i.imgur.com/1XCXYWG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Zum Schluss trennen wir wieder die Verbindung. Gebe "exit" in Powershell ein und schon ist es erledigt! Nun befinden Sie sich wieder innerhalb Ihrer Windows-VM.
+Zum Schluss trennen wir wieder die Verbindung. Gebe "exit" in PowerShell ein und schon ist es erledigt! Nun befinden Sie sich wieder innerhalb Ihrer Windows-VM.
 </p>
 <p>
 <img src="https://i.imgur.com/1BSWF4Y.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
