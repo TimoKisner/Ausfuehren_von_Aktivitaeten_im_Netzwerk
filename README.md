@@ -3,7 +3,7 @@
 </p>
 
 <h1>Netzwerksicherheitsgruppen (NSGs) und Inspektion von Netzwerkprotokollen</h1>
-In diesem Tutorial beobachten wir den Datenverkehr von und zu Virtuellen Maschinen in Azure und die verschiedenen Protokolle, die im Netzwerk zu finden sind. Darüber hinaus experimentieren wir mit Netzwerksicherheitsgruppen und beobachten, wie diese Einfluss auf unseren Datenverkehr im Netzwerk haben können.
+In diesem Tutorial beobachten wir den Datenverkehr von und zu virtuellen Maschinen in Azure und die verschiedenen Protokolle, die im Netzwerk zu finden sind. Darüber hinaus experimentieren wir mit Netzwerksicherheitsgruppen und beobachten, wie diese Einfluss auf unseren Datenverkehr im Netzwerk haben können.
 <br />
 
 
@@ -13,9 +13,9 @@ In diesem Tutorial beobachten wir den Datenverkehr von und zu Virtuellen Maschin
 <!-- NEW SECTION -->
 <h2>Verwendete Technologien und Umgebungen</h2>
 
-- Microsoft Azure (Virtuelle Maschinen, Virtuelles Netzwerk)
+- Microsoft Azure (virtuelle Maschinen, virtuelles Netzwerk)
 - Remotedesktopverbindungen (/Microsoft Remote Desktop)
-- Powershell
+- PowerShell
 - Netzwerkprotokolle (SSH, DNS, RDP, ICMP)
 - Wireshark (Protokoll-Analysator)
 
@@ -57,18 +57,18 @@ In diesem Tutorial beobachten wir den Datenverkehr von und zu Virtuellen Maschin
 <!-- NEW SECTION -->
 <h2>Einrichten der Umgebung</h2>
 <p>
-Für unser heutiges Vorhaben benötigen wir zwei Virtuelle Maschinen innerhalb des selben Netzwerks. Ich verwende hierfür Microsoft Azure und ihre Cloud-Services. Zuerst erstellen wir eine Ressourcengruppe, die unsere virtuellen Maschinen und das virtuelle Netzwerk haust. Meine lautet "RGroup". Neben dem Namen wählen wir eine Region die uns nahe liegt und erstellen die Ressourcengruppe. Der Nächste Schritt beinhaltet das Erstellen des Virtuellen Netzwerks. Dabei wichtig, diese der von uns soeben erstellten Ressourcengruppe zuzuordnen und die selbe Region auszuwählen. Mein Netzwerk heißt "TestVnet". 
+Für unser heutiges Vorhaben benötigen wir zwei virtuelle Maschinen innerhalb desselben Netzwerks. Ich verwende hierfür Microsoft Azure und ihre Cloud-Services. Zuerst erstellen wir eine Ressourcengruppe, die unsere virtuellen Maschinen und das virtuelle Netzwerk haust. Meine lautet "RGroup". Neben dem Namen wählen wir eine Region die uns nahe liegt und erstellen die Ressourcengruppe. Der Nächste Schritt beinhaltet das Erstellen des virtuellen Netzwerks. Dabei wichtig, diese der von uns soeben erstellten Ressourcengruppe zuzuordnen und dieselbe Region auszuwählen. Mein Netzwerk heißt "TestVnet".
 </p>
 <p>
 <img src="https://i.imgur.com/PjWBZgw.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Nun zu den Virtuellen Maschinen. Wir benötigen eine VM (=Virtuelle Maschine) mit einem Windows Betriebssystem und eine mit einem Linux Betriebssystem. Beim Erstellen gilt für beide: die Ressourcengruppe, die wir erstellt haben auszuwählen sowie das virtuelle Netzwerk; die selbe Region wie diese; eine Größe des Rechners von mindestens 2vcpus (=virtuelle CPUs).
+Nun zu den virtuellen Maschinen. Wir benötigen eine VM (=Virtuelle Maschine) mit einem Windows Betriebssystem und eine mit einem Linux Betriebssystem. Beim Erstellen gilt für beide: die Ressourcengruppe, die wir erstellt haben, auszuwählen sowie das virtuelle Netzwerk; dieselbe Region wie diese; eine Größe des Rechners von mindestens 2vcpus (=virtuelle CPUs).
 </p>
 <br />
 <p>
-Spezifisch für die Windows-Maschine gilt es das Häckchen ganz unten auf der Seite "Grundeinstellungen" zu setzen und Windows 10 Pro 22H2 für das Image auszuwählen. !Wichtig: Den Benutzernamen und das Passwort welches Sie eingegeben haben benötigen wir später für das Verbinden zur Maschine. Mein Admin-Konto für meine Windows-Maschine "windowsVM" lautet "TestWindows".
+Spezifisch für die Windows-Maschine gilt es das Häkchen ganz unten auf der Seite "Grundeinstellungen" zu setzen und Windows 10 Pro 22H2 für das Image auszuwählen. !Wichtig: Den Benutzernamen und das Passwort, welches Sie eingegeben haben, benötigen wir später für das Verbinden zur Maschine. Mein Admin-Konto für meine Windows-Maschine "windowsVM" lautet "TestWindows".
 </p>
 <p>
 <img src="https://i.imgur.com/hocX2Hg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -78,7 +78,7 @@ Spezifisch für die Windows-Maschine gilt es das Häckchen ganz unten auf der Se
 </p>
 
 <p>
-Spezifisch für die Linux gilt Ubuntu Server 22.04 als Image auszuwählen und den Authentifizierungstyp unter Adminstratorkonto auf "Kennwort" zu setzen (s. Bild). Mein Admin-Konto für meine Linux-Maschine "linuxVM" lautet "TestLinux".
+Spezifisch für die Linux gilt Ubuntu Server 22.04 als Image auszuwählen und den Authentifizierungstyp unter Administratorkonto auf "Kennwort" zu setzen (s. Bild). Mein Admin-Konto für meine Linux-Maschine "linuxVM" lautet "TestLinux".
 </p>
 <p>
 <img src="https://i.imgur.com/m7Umzhh.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -95,7 +95,7 @@ Spezifisch für die Linux gilt Ubuntu Server 22.04 als Image auszuwählen und de
 <!-- NEW SECTION -->
 <h2>Einführung in Wireshark</h2>
 <p>
-Zuerst verbinden wir uns mit der Virtuellen Windows-Maschine mithilfe von Remotedesktopverbindungen ( oder Microsoft Remote Desktop falls Ihr PC ein MacOS verwendet). Anschließend gehen wir ins Internet und installieren Wireshark[hier hyperlink:https://www.wireshark.org/#downloadLink], genauer den Windows x64 Installer. Öffnen Sie diesen nach erfolgreichem Download und starten Sie mit der Installation von Wireshark. Klicken Sie sich hierbei einfach durch und achten Sie bei dem Fenster "Packet Capture" darauf dass das Häckchen für "Install Npcap [Version]" gesetzt ist (s. Bild). Npcap ist ein essenzielles Netzwerk-Capture-Tool, welches Wireshark die Möglichkeit gibt, Datenpakete direkt von der Netzwerkschnittstelle aus zu erfassen. Ohne Npcap könnte Wireshark keine Netzwerkaktivitäten aufzeichnen, da es als Schnittstelle zwischen der Software und der Netzwerkkarte dient. Daher ist die Installation von Npcap entscheidend, um mit Wireshark effektiv Netzwerkverkehr analysieren zu können.
+Zuerst verbinden wir uns mit der virtuellen Windows-Maschine mithilfe von Remotedesktopverbindungen (oder Microsoft Remote Desktop, falls Ihr PC ein MacOS verwendet). Anschließend gehen wir ins Internet und installieren Wireshark[hier hyperlink:https://www.wireshark.org/#downloadLink], genauer den Windows x64 Installer. Öffnen Sie diesen nach erfolgreichem Download und starten Sie mit der Installation von Wireshark. Klicken Sie sich hierbei einfach durch und achten Sie bei dem Fenster "Packet Capture" darauf dass das Häkchen für "Install Npcap [Version]" gesetzt ist (s. Bild). Npcap ist ein essenzielles Netzwerk-Capture-Tool, welches Wireshark die Möglichkeit gibt, Datenpakete direkt von der Netzwerkschnittstelle aus zu erfassen. Ohne Npcap könnte Wireshark keine Netzwerkaktivitäten aufzeichnen, da es als Schnittstelle zwischen der Software und der Netzwerkkarte dient. Daher ist die Installation von Npcap entscheidend, um mit Wireshark effektiv Netzwerkverkehr analysieren zu können. ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 </p>
 <p>
 <img src="https://i.imgur.com/Y7XZwIT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -106,14 +106,14 @@ Zuerst verbinden wir uns mit der Virtuellen Windows-Maschine mithilfe von Remote
 <br />
 
 <p>
-Nach der Installation öffnen wir Wireshark und starten eine Packet-Capture, anders ausgedrückt fangen wir an, Datenpakete, die an und von unserer Virtuellen Windows Maschine gesendet werden, abzufangen. Aber was ist Wireshark überhaupt? Wireshark ist ein Open-Source-Analysetool, das Netzwerkverkehr in Echtzeit erfasst und detailliert darstellt, um Netzwerke zu überwachen und Probleme zu diagnostizieren. Es ermöglicht Benutzern, Datenpakete zu untersuchen und Protokolle wie SSH, DHCP oder DNS zu analysieren. Folge zum Starten einer Packet-Capture dem kommenden Bild.
+Nach der Installation öffnen wir Wireshark und starten eine Packet-Capture, anders ausgedrückt fangen wir an, Datenpakete, die an und von unserer virtuellen Windows Maschine gesendet werden, abzufangen. Aber was ist Wireshark überhaupt? Wireshark ist ein Open-Source-Analysetool, das Netzwerkverkehr in Echtzeit erfasst und detailliert darstellt, um Netzwerke zu überwachen und Probleme zu diagnostizieren. Es ermöglicht Benutzern, Datenpakete zu untersuchen und Protokolle wie SSH, DHCP oder DNS zu analysieren. Folge zum Starten einer Packet-Capture dem kommenden Bild.
 </p>
 <p>
 <img src="https://i.imgur.com/rnUZQEP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Setzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informationen über diese. Wie den Ursprung und das Ziel des Datenpakets oder auch Informationen über die verschiedenen Protokolle und Ports, bis hin zum physischen Medium, welches das Datenpaket auf seiner Reise durchläuft. Jegliche Kommunikation zwischen zwei Geräten über ein Netzwerk, sei es innerhalb des lokalen Netzwerks oder des Internets, lässt sich mithilfe des OSI-Modells erklären. Das OSI-Modell ist ein konzeptionelles Referenzmodell, das die Kommunikation in Netzwerken in sieben Schichten unterteilt, um die Übertragung von Daten systematisch zu beschreiben und zu standardisieren. Auch die links unten stehenden Informationen orientieren sich an diesem Modell, jedoch würde eine detailierte Erläuterung dieses Modells den Rahmen der Anleitung sprengen. Wir konzentrieren uns in dieser Anleitung lediglich auf die Eckdaten, wie Quelle des Datenpakets, das Ziel, etc.
+Jetzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informationen über diese. Wie den Ursprung und das Ziel des Datenpakets oder auch Informationen über die verschiedenen Protokolle und Ports, bis hin zum physischen Medium, welches das Datenpaket auf seiner Reise durchläuft. Jegliche Kommunikation zwischen zwei Geräten über ein Netzwerk, sei es innerhalb des lokalen Netzwerks oder des Internets, lässt sich mithilfe des OSI-Modells erklären. Das OSI-Modell ist ein konzeptionelles Referenzmodell, das die Kommunikation in Netzwerken in sieben Schichten unterteilt, um die Übertragung von Daten systematisch zu beschreiben und zu standardisieren. Auch die links unten stehenden Informationen orientieren sich an diesem Modell, jedoch würde eine detaillierte Erläuterung dieses Modells den Rahmen der Anleitung sprengen. Wir konzentrieren uns in dieser Anleitung lediglich auf die Eckdaten, wie Quelle des Datenpakets, das Ziel, etc.
 </p>
 <p>
 <img src="https://i.imgur.com/eTFQfWX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -126,21 +126,21 @@ Setzt sehen wir all die Pakete, die Wireshark abfängt und gibt uns Informatione
 <!-- NEW SECTION -->
 <h2>Konfigurieren von NSGs</h2>
 <p>
-Bevor wir an den Netzwerksicherheitsgruppen der Virtuellen Maschinen schrauben müssen wir innerhalb unserer Windows-Maschine "Windows Powershell" öffnen. Und das als Adminstrator. PowerShell ist eine Befehlszeile und Skriptumgebung von Microsoft, die zur Verwaltung von Systemen und Netzwerken dient. Es wird verwendet, um Befehle auszuführen und Prozesse zu automatisieren. Einfach gesagt, PowerShell funktioniert, indem es Benutzerbefehle annimmt und diese direkt auf einem System ausführt.
+Bevor wir an den Netzwerksicherheitsgruppen der virtuellen Maschinen schrauben müssen wir innerhalb unserer Windows-Maschine "Windows PowerShell" öffnen. Und das als Administrator. PowerShell ist eine Befehlszeile und Skriptumgebung von Microsoft, die zur Verwaltung von Systemen und Netzwerken dient. Es wird verwendet, um Befehle auszuführen und Prozesse zu automatisieren. Einfach gesagt, PowerShell funktioniert, indem es Benutzerbefehle annimmt und diese direkt auf einem System ausführt.
 </p>
 <p>
 <img src="https://i.imgur.com/1zmIHeW.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Als nächstes wollen wir von unserer Windows-Maschine aus unsere Linux(/Ubuntu)-Maschine anpingen. Bei dem anpingen wird das ICMP-Protokoll verwendet. Was ist ICMP und was genau beudeutet "anpingen"? Ping ist ein Netzwerk-Tool, das mithilfe des Protokolls ICMP (Internet Control Message Protocol) überprüft, ob ein bestimmtes Ziel im Netzwerk erreichbar ist. Darüber hinaus misst es sogar die Antwortzeit. ICMP ist ein Netzwerkprotokoll, das für den Austausch von Fehler- und Statusmeldungen zwischen Geräten im Netzwerk verwendet wird, wie z. B. zur Meldung, ob ein Paket sein Ziel erreicht hat oder nicht. Aber bei dem ganzen Spam in Wireshark ist es unwahrscheinlich, dass wir die Pakete mit unseren Augen erwischen. Also filtern wir erst den Datenverkehr in Wireshark. Da wir auf ping filtern wollen geben wir in die Zeile "icmp" ein und drücken Enter (s.Bild).
+Als Nächstes wollen wir von unserer Windows-Maschine aus unsere Linux(/Ubuntu)-Maschine anpingen. Bei dem anpingen wird das ICMP-Protokoll verwendet. Was ist ICMP und was genau bedeutet "anpingen"? Ping ist ein Netzwerk-Tool, das mithilfe des Protokolls ICMP (Internet Control Message Protocol) überprüft, ob ein bestimmtes Ziel im Netzwerk erreichbar ist. Darüber hinaus misst es sogar die Antwortzeit. ICMP ist ein Netzwerkprotokoll, das für den Austausch von Fehler- und Statusmeldungen zwischen Geräten im Netzwerk verwendet wird, wie z. B. zur Meldung, ob ein Paket sein Ziel erreicht hat oder nicht. Aber bei dem ganzen Spam in Wireshark ist es unwahrscheinlich, dass wir die Pakete mit unseren Augen erwischen. Also filtern wir erst den Datenverkehr in Wireshark. Da wir auf ping filtern wollen geben wir in die Zeile "icmp" ein und drücken Enter (s.Bild). 
 </p>
 <p>
 <img src="https://i.imgur.com/FGoj14r.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Schon viel übersichtlicher! Jetzt pingen wir die Linux-Maschine an mittels Powershell. Gebe dazu "ping [private-IPv4_Addresse]" in Powershell ein. Die private-IPv4-Addresse deiner Linux-Maschine findest du, wenn du in Microsoft Azure zu den Virtuellen Maschinen navigierst und dann die Linux-Maschine anklickst (s. Bild). In meinem Fall habe ich die Maschine "LinuxVM" benannt und die IP-Addresse lautet 10.0.0.5.
+Schon viel übersichtlicher! Jetzt pingen wir die Linux-Maschine an mittels PowerShell. Gebe dazu "ping [private-IPv4-Adresse]" in PowerShell ein. Die private-IPv4-Adresse deiner Linux-Maschine findest du, wenn du in Microsoft Azure zu den virtuellen Maschinen navigierst und dann die Linux-Maschine anklickst (s. Bild). In meinem Fall habe ich die Maschine "LinuxVM" benannt und die IP-Adresse lautet 10.0.0.5.
 </p>
 <p>
 <img src="https://i.imgur.com/cwCyYOR.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -151,21 +151,21 @@ Schon viel übersichtlicher! Jetzt pingen wir die Linux-Maschine an mittels Powe
 <br />
 
 <p>
-Zurück in Wireshark sehen wir jetzt den Datenverkehr den wir mit unserem ping ausgelöst haben. Und wir sehen auch, dass es ein Erfolg war da wir einen Wechsel an Anfrage und Antwort sehen.
+Zurück in Wireshark sehen wir jetzt den Datenverkehr, den wir mit unserem ping ausgelöst haben. Und wir sehen auch, dass es ein Erfolg war da wir einen Wechsel an Anfrage und Antwort sehen.
 </p>
 <p>
 <img src="https://i.imgur.com/JVdADNz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Mit unserem jetzigen Grundwissen können wir anfangen die Netzwerksicherheitsgruppen zu konfigurieren. Netzwerksicherheitsgruppen (NSGs) sind virtuelle Firewallregeln in Azure, die den eingehenden und ausgehenden Datenverkehr für virtuelle Maschinen und andere Netzwerkressourcen steuern. Sie ermöglichen es, den Datenverkehr basierend auf Parametern wie IP-Adressen, Ports und Protokollen gezielt zuzulassen oder zu blockieren. Wichtig zu wissen, ist dass es sich bei NSGs um eine spezifische Funktion von Microsoft Azure ist. Das Konzept dahinter ist bei allen Cloud-Umgebungen zu finden, bloß mit verschiedenen Bezeichnungen. Zuerst initialisieren wir einen dauerhaften ping an die Linux-Maschine ausgehend von unserer Windows-Maschine. Gebe erneut "ping [IP-Addresse]" ein und hänge diesmal ein " -t" dran.
+Mit unserem jetzigen Grundwissen können wir anfangen die Netzwerksicherheitsgruppen zu konfigurieren. Netzwerksicherheitsgruppen (NSGs) sind virtuelle Firewallregeln in Azure, die den eingehenden und ausgehenden Datenverkehr für virtuelle Maschinen und andere Netzwerkressourcen steuern. Sie ermöglichen es, den Datenverkehr basierend auf Parametern wie IP-Adressen, Ports und Protokollen gezielt zuzulassen oder zu blockieren. Wichtig zu wissen ist, dass es sich bei NSGs um eine spezifische Funktion von Microsoft Azure ist. Das Konzept dahinter ist bei allen Cloud-Umgebungen zu finden, bloß mit verschiedenen Bezeichnungen. Zuerst initialisieren wir einen dauerhaften ping an die Linux-Maschine ausgehend von unserer Windows-Maschine. Gebe erneut "ping [IP-Adresse]" ein und hänge diesmal ein "-t" dran.
 </p>
 <p>
 <img src="https://i.imgur.com/LLPv3cr.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-In Microsoft Azure navigieren wir erneut zu unserer Linux-Maschine, unter "Netzwerk" auf "Netzwerkeinstellungen" und rechts auf den blauen Text neben "Netzwerksicherheitsgruppe". Links unter "Eingangssicherheitsregeln" wollen wir eine neue hinzufügen, die an die Maschine gesendete ICMP-Datenpakete blockt. Hierbei setzen wir die Zahl bei dem Kästchen "Priorität" auf 290. Es kann auch eine andere Zahl sein, hauptsache sie ist niedriger als 300. Der Name der Regel spielt keine Rolle.
+In Microsoft Azure navigieren wir erneut zu unserer Linux-Maschine, unter "Netzwerk" auf "Netzwerkeinstellungen" und rechts auf den blauen Text neben "Netzwerksicherheitsgruppe". Links unter "Eingangssicherheitsregeln" wollen wir eine neue hinzufügen, die an die Maschine gesendete ICMP-Datenpakete blockt. Hierbei setzen wir die Zahl bei dem Kästchen "Priorität" auf 290. Es kann auch eine andere Zahl sein, Hauptsache sie ist niedriger als 300. Der Name der Regel spielt keine Rolle.
 </p>
 <p>
 <img src="https://i.imgur.com/CFb2yKl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -175,14 +175,14 @@ In Microsoft Azure navigieren wir erneut zu unserer Linux-Maschine, unter "Netzw
 </p>
 
 <p>
-Beobachte jetzt in deiner Windows-Maschine den ping in Powershell und in Wireshark die Datenpakete. Anhand beider kannst du erkennen, das die Windows-Maschine immernoch versucht die Linux-Maschine anzupingen, sie aber keine Antwort ("reply") mehr von der Linux-Maschine bekommt: Die Linux-Maschine empfängt die Datenpakete. Aber da wir ping benutzen, werden die Pakete durch das ICMP-Protokoll geschleust, welches wir mit unserer selbst definierten Sicherheitsregel geblockt haben. Somit kommt es zu keiner Antwort mehr. 
+Beobachte jetzt in deiner Windows-Maschine den ping in PowerShell und in Wireshark die Datenpakete. Anhand beider kannst du erkennen, das die Windows-Maschine immer noch versucht die Linux-Maschine anzupingen, sie aber keine Antwort ("reply") mehr von der Linux-Maschine bekommt: Die Linux-Maschine empfängt die Datenpakete. Aber da wir ping benutzen, werden die Pakete durch das ICMP-Protokoll geschleust, welches wir mit unserer selbst definierten Sicherheitsregel geblockt haben. Somit kommt es zu keiner Antwort mehr. 
 </p>
 <p>
 <img src="https://i.imgur.com/EAVMyuU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-Bevor wir zum nächsten Kapitel springen, löschen wir die Sicherheitsregel wieder und stellen sicher, dass in Wireshark und Powershell dei zwei Maschinen wieder normal mit einander kommunizieren, sprich dass die Linux-Maschine wieder antwortet. Anschließend stoppen wir den permanenten ping (Ctrl+C) und springen zum nächsten Kapitel.
+Bevor wir zum nächsten Kapitel springen, löschen wir die Sicherheitsregel wieder und stellen sicher, dass in Wireshark und PowerShell die zwei Maschinen wieder normal miteinander kommunizieren. Sprich, dass die Linux-Maschine wieder antwortet. Anschließend stoppen wir den permanenten ping (Ctrl+C) und springen zum nächsten Kapitel.
 </p>
 <p>
 <img src="https://i.imgur.com/r6ITvro.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
