@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
+<img src="https://i.imgur.com/cN0K7lV.png" alt="Traffic Examination"/>
 </p>
 
 <h1>Netzwerksicherheitsgruppen (NSGs) und Inspektion von Netzwerkprotokollen</h1>
